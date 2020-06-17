@@ -1,12 +1,12 @@
 import numpy as np
-import cv2
+import cv2 # OpenCV
 
-# Variable
+# Assigning Variables
 drawing = False
 ix,iy = -1,-1
 
 
-# Functions
+# Defining Functions
 def draw_rectangle (event,x,y,flags,param):
     global ix,iy,drawing
     
@@ -16,22 +16,22 @@ def draw_rectangle (event,x,y,flags,param):
         
     elif event == cv2.EVENT_MOUSEMOVE:
         if drawing==True:
-             cv2.rectangle(img,(ix,iy),(x,y),(0,0,255),-1)
+             cv2.rectangle(img,(ix,iy),(x,y),(0,0,255),-1) # Allows to draw solid rectangle while dragging the mouse
     
     elif event == cv2.EVENT_LBUTTONUP:
         drawing = False
-        cv2.rectangle(img,(ix,iy),(x,y),(0,0,255),-1)
+        cv2.rectangle(img,(ix,iy),(x,y),(0,0,255),-1) # Stops the drawing
 
 
 # Opening Of Image
-img = cv2.imread('C:/Users/Augustina/Downloads/DATA/dog_backpack.png')
+img = np.zeros((512,512,3)) # Blank black image
 
 cv2.namedWindow(winname='back')
 
 cv2.setMouseCallback('back',draw_rectangle)
 
 while True:
-    cv2.imshow('back',img)
+    cv2.imshow('back',img) #Shows both the image and the rectangle being drawn
     if cv2.waitKey(1) & 0xFF==27:
         break
 
